@@ -2,11 +2,9 @@ from datetime import datetime
 from aiogram import Router, F, types
 from aiogram.types import Message
 from aiogram.filters.command import Command, CommandObject
-from config_assistants import ConfigBox
-from assistants_request import assistant_run
+from config_imagination import ConfigBox
+#from assistants_request import assistant_run
 #from openai import AsyncOpenAI
-
-open_ai_role_dict = {}
 
 router = Router()
 
@@ -16,10 +14,6 @@ async def set_assistant_instructions(
             message: Message,
             command: CommandObject
     ):
-    #ya_gpt_role = message.text
-    #await message.reply(f"role set ok! {ya_gpt_role}")
-    
-    #global open_ai_role_dict
 
     # Если не переданы никакие аргументы, то
     # command.args будет None
