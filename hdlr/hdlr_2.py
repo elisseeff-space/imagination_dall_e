@@ -35,7 +35,6 @@ async def cmd_help(message: types.Message):
             "Например, адресно обратиться к одному из участников.\n Тогда бот не будет мешать своими ответами.",
             marker="✅ ",
         ),
-        
         HashTag("#OpenAI Imagination"),
         sep="\n\n",
     )
