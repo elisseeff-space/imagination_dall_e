@@ -61,8 +61,8 @@ class imagination_Config():
     
     @classmethod
     def update_dialog(self, chat_id: str, dialog_message: str)->bool:
-        if self.dialog_messages[chat_id] is None : self.dialog_messages[chat_id] = []
-        else : self.dialog_messages[chat_id].append(dialog_message)
+        if chat_id in self.dialog_messages.keys() : self.dialog_messages[chat_id].append(dialog_message)
+        else : self.dialog_messages[chat_id] = []
 
 ConfigBox = imagination_Config()
 
