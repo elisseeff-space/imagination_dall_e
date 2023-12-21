@@ -36,7 +36,7 @@ async def cmd_help(message: types.Message):
             marker="✅ ",
         ),
         
-        HashTag("#OpenAI Assistant"),
+        HashTag("#OpenAI Imagination"),
         sep="\n\n",
     )
     await message.reply(**content.as_kwargs())
