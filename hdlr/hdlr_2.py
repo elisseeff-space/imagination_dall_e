@@ -45,40 +45,4 @@ async def cmd_help(message: types.Message):
 async def cmd_control(message: types.Message):
     for _ in ConfigBox.dialog_messages.keys() :
         await message.answer(f"In chat {_}: {len(ConfigBox.dialog_messages[_])} messages.\n")
-
-@router.message(Command("reply"))
-async def cmd_reply(message: types.Message):
-    await message.reply('Это ответ с "ответом"')
-
-@router.message(Command("dice"))
-async def cmd_dice(message: types.Message):
-    await message.answer_dice(emoji="🎲")
-
-@router.message(F.text.lower() == "с пюрешкой")
-async def with_puree(message: types.Message):
-    await message.reply("Отличный выбор!", reply_markup=types.ReplyKeyboardRemove())
-
-@router.message(F.text.lower() == "без пюрешки")
-async def without_puree(message: types.Message):
-    await message.reply("Так невкусно!", reply_markup=types.ReplyKeyboardRemove())
-
-@router.message(Command("random"))
-async def cmd_random(message: types.Message):
-    builder = InlineKeyboardBuilder()
-    builder.add(types.InlineKeyboardButton(
-        text="Нажми меня",
-        callback_data="random_value")
-    )
-    await message.answer(
-        "Нажмите на кнопку, чтобы бот отправил число от 1 до 10",
-        reply_markup=builder.as_markup()
-    )
-
-@router.callback_query(F.data == "random_value")
-async def send_random_value(callback: types.CallbackQuery):
-    await callback.message.answer(str(randint(1, 10)))
-    await callback.answer(
-        text="Спасибо, что воспользовались ботом!",
-        show_alert=True
-    )
-    # или просто await callback.answer()
+        
