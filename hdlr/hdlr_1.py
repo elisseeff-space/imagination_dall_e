@@ -65,11 +65,7 @@ async def message_with_text(message: Message, bot: Bot):
         image_url = response.data[0].url
         print(image_url)
 
-        await bot.download_file(
-            image_url,
-            destination=f"/home/pavel/github/imagination_dall_e/img/111.jpg"
-        )
-        await message.answer("Картинка сгенерирована...")
+        await message.answer("Картинка сгенерирована: {image_url}")
     else : 
         await message.answer("Я молчу...")
     
