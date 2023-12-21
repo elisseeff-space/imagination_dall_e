@@ -8,9 +8,9 @@ class imagination_Config():
     logger = logging.getLogger(__name__)
     # настройка обработчика и форматировщика для logger
     if os.name == 'posix': 
-        file_name = "/home/pavel/github/imagination/log/imagination.log"
+        file_name = "/home/pavel/github/imagination_dall_e/log/imagination.log"
     elif os.name == 'nt':
-        file_name = r'C:\Users\Eliseev\GitHub\imagination\log\imagination.log'
+        file_name = r'C:\Users\Eliseev\GitHub\imagination_dall_e\log\imagination.log'
     else: raise ValueError("Unsupported operating system")
 
     handler = logging.FileHandler(file_name, mode='w')
@@ -36,8 +36,8 @@ class imagination_Config():
         self.logger.addHandler(self.handler)
 
         #self.StepQuantity = 878
-        if os.name == 'posix': filename = "/home/pavel/github/imagination/db/imagination.db"
-        elif os.name == 'nt': filename = str(r'C:\Users\Eliseev\GitHub\imagination\db\imagination.db')
+        if os.name == 'posix': filename = "/home/pavel/github/imagination_dall_e/db/imagination_dall_e.db"
+        elif os.name == 'nt': filename = str(r'C:\Users\Eliseev\GitHub\imagination_dall_e\db\imagination_dall_e.db')
         else: raise ValueError("Unsupported operating system")
         self.dbase = sq.connect(filename)
         self.cur = self.dbase.cursor()
