@@ -24,11 +24,10 @@ async def cmd_help(message: types.Message):
         as_marked_section(
             Bold("Иструкция по применению!"),
             as_key_value("Всего два правила использования бота", 2),
-            #as_key_value("Success", 3),
             marker="  ",
         ),
         as_marked_section(
-            Bold("1. Пишете в сообщении описание того, что надо нарисовать и я нарисую.",
+            Bold("1. Пишете в сообщении описание того, что надо нарисовать и я нарисую."),
             marker="✅ ",
         ),
         as_marked_section(
