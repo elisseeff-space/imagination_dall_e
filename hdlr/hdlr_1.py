@@ -72,7 +72,7 @@ async def message_with_text(message: Message, bot: Bot):
         ConfigBox.dbase.execute('insert into tbl_ya_gpt_log values (?,?,?,?,?,?,?,?,?)', params)
         ConfigBox.dbase.commit()
 
-        await message.answer(f"Картинка сгенерирована: {image_url}")
+        await message.answer(f"Картинка сгенерирована:\n{image_url}")
     else : 
         await message.answer("Я молчу...")
     
