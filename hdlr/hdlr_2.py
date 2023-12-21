@@ -28,6 +28,7 @@ async def cmd_help(message: types.Message):
         ),
         as_marked_section(
             Bold("1. Пишете в сообщении описание того, что надо нарисовать и я нарисую."),
+            "Например, нарисуй котика на полянке, играющего с мячиком.",
             marker="✅ ",
         ),
         as_marked_section(
