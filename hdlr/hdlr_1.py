@@ -56,7 +56,7 @@ async def message_with_text(message: Message, bot: Bot):
 
         response = ConfigBox.client.images.generate(
         model="dall-e-3",
-        prompt="message",
+        prompt=message.text,
         size="1024x1024",
         quality="standard",
         n=1,
