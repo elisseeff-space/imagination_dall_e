@@ -43,8 +43,8 @@ async def cmd_help(message: types.Message):
 
 @router.message(Command("control"))
 async def cmd_control(message: types.Message):
-    #await message.answer(f"Chat {_}: {len(ConfigBox.assistant_messages[_])} items.")
-    await message.answer(f"In chat: ххх messages.\n")
+    for _ in ConfigBox.dialog_messages.keys() :
+        await message.answer(f"In chat {_}: {len(ConfigBox.dialog_messages[_])} messages.\n")
 
 @router.message(Command("reply"))
 async def cmd_reply(message: types.Message):

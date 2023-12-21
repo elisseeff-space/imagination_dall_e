@@ -63,7 +63,14 @@ async def message_with_text(message: Message, bot: Bot):
         )
 
         image_url = response.data[0].url
-        print(image_url)
+        chat_id = str(message.chat.id)
+        user_id = message.from_user.id
+        use_date = str(datetime.now())
+
+        ConfigBox.update_dialog(chat_id, message.text)
+        params = (chat_id, user_id, use_date, "imagination", message.text, _, 0, 0, 0)
+        ConfigBox.dbase.execute('insert into tbl_ya_gpt_log values (?,?,?,?,?,?,?,?,?)', params)
+        ConfigBox.dbase.commit()
 
         await message.answer(f"Картинка сгенерирована: {image_url}")
     else : 
