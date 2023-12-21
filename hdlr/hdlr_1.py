@@ -65,7 +65,7 @@ async def message_with_text(message: Message, bot: Bot):
         image_url = response.data[0].url
         print(image_url)
 
-        await message.answer("Картинка сгенерирована: {image_url}")
+        await message.answer(f"Картинка сгенерирована: {image_url}")
     else : 
         await message.answer("Я молчу...")
     
