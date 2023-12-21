@@ -1,5 +1,5 @@
 from datetime import datetime
-from aiogram import Router, F, types
+from aiogram import Router, F, Bot
 from aiogram.types import Message
 from aiogram.filters.command import Command, CommandObject
 from config_imagination import ConfigBox
@@ -39,7 +39,7 @@ async def set_assistant_instructions(
     )
 
 @router.message(F.text)
-async def message_with_text(message: Message):
+async def message_with_text(message: Message, bot: Bot):
     
     #query = message.text.replace('"', '^')
     query = message.text.replace('"', '^')
@@ -53,28 +53,23 @@ async def message_with_text(message: Message):
             flag = True
     
     if flag is False :
-        chat_id = str(message.chat.id)
-        user_id = message.from_user.id
-        if chat_id in ConfigBox.dialog_treads.keys() :
-            ConfigBox.update_dialog(chat_id, "user", query)
-        else:
-            ConfigBox.create_dialog(chat_id, query)
-        
-        assistant__response = await assistant_run(chat_id, message)
-        
-        use_date = str(datetime.now())
-        #time_now = datetime.now().strftime('%H:%M')
-        if len(assistant__response) > 0 :
-            for _ in assistant__response :
-                _ = _.replace('"', '^')
-                params = (chat_id, user_id, use_date, ConfigBox.dialog_instructions[chat_id], query, _, 0, 0, 0)
-                ConfigBox.dbase.execute('insert into tbl_ya_gpt_log values (?,?,?,?,?,?,?,?,?)', params)
-                ConfigBox.dbase.commit()
 
-                #ConfigBox.update_dialog(chat_id, "assistant", _)
-                await message.answer(f"{_}")
-        else : 
-            await message.answer("Ответ не получен. Наверное что-то случилось")
+        response = ConfigBox.client.images.generate(
+        model="dall-e-3",
+        prompt="message",
+        size="1024x1024",
+        quality="standard",
+        n=1,
+        )
+
+        image_url = response.data[0].url
+        print(image_url)
+
+        await bot.download(
+            image_url,
+            destination=f"/home/pavel/github/imagination_dall_e/img/{message.photo[-1].file_id}.jpg"
+        )
+        await message.answer("Я молчу...")
     else : 
         await message.answer("Я молчу...")
     

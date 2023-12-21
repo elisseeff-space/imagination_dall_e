@@ -6,7 +6,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.types import Message
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.enums import ParseMode
-from config_assistants import ConfigBox
+from config_imagination import ConfigBox
 from aiogram.utils.formatting import (
     Bold, as_list, as_marked_section, as_key_value, HashTag
 )
@@ -28,9 +28,7 @@ async def cmd_help(message: types.Message):
             marker="  ",
         ),
         as_marked_section(
-            Bold("1. командой /role можно задать инструкцию боту, чтобы он лучше понимал, что ему надо делать."),
-            "Например: Инструкция: Найди все упомянутые даты и время в тексте. Выпиши их, каждый с новой строки. \n Пример результата: 22-01-2019 17:00 Завтра 18:15 Вчера Если в тексте нет дат, верни 0.\n",
-            "Или: Ты — опытный копирайтер. Сгенерируй 5 опций заголовка для маркетингового текста, чтобы привлечь внимание читателей.",
+            Bold("1. Пишете в сообщении описание того, что надо нарисовать и я нарисую.",
             marker="✅ ",
         ),
         as_marked_section(
@@ -38,11 +36,6 @@ async def cmd_help(message: types.Message):
             "Например, адресно обратиться к одному из участников.\n Тогда бот не будет мешать своими ответами.",
             marker="✅ ",
         ),
-        #as_marked_section(
-        #    Bold("Failed:"),
-        #    "Test 2",
-        #    marker="❌ ",
-        #),
         
         HashTag("#OpenAI Assistant"),
         sep="\n\n",
@@ -51,12 +44,8 @@ async def cmd_help(message: types.Message):
 
 @router.message(Command("control"))
 async def cmd_control(message: types.Message):
-        #await message.answer(f"Chat {_}: {len(ConfigBox.assistant_messages[_])} items.")
-    for chat_id in ConfigBox.dialog_treads.keys() :
-        messages = ConfigBox.client.beta.threads.messages.list(
-            thread_id=ConfigBox.dialog_treads[chat_id].id
-            )
-        await message.answer(f"In chat: {chat_id}, {len(messages.data)} messages.\n")
+    #await message.answer(f"Chat {_}: {len(ConfigBox.assistant_messages[_])} items.")
+    await message.answer(f"In chat: ххх messages.\n")
 
 @router.message(Command("reply"))
 async def cmd_reply(message: types.Message):
