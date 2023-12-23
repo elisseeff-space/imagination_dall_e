@@ -173,8 +173,8 @@ async def message_with_photo(message: Message):
 
         await message.answer(f"Картинка сгенерирована:\n{image_url}")
     except openai.OpenAIError as e:
-        ConfigBox.logger.error(e.http_status)
-        ConfigBox.logger.error(e.error)
+        ConfigBox.logger.error(e)
+
 @router.message(F.document)
 async def message_with_document(message: Message):
     file_id = message.document.file_id
