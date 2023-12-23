@@ -2,7 +2,7 @@ import asyncio
 import logging
 from aiogram import F
 from aiogram import Bot, Dispatcher
-from aiogram.enums import ParseMode
+#from aiogram.enums import ParseMode
 from config_imagination import ConfigBox
 from hdlr import hdlr_1, hdlr_2
 
@@ -11,8 +11,8 @@ async def main():
     # Включаем логирование, чтобы не пропустить важные сообщения
     logging.basicConfig(level=logging.INFO)
     # Объект бота
-    #bot = Bot(token=ConfigBox.config['ya_stt_bot'])#, parse_mode=ParseMode.HTML)
-    bot = Bot(token=ConfigBox.config['imagination_gpt_bot'])#, parse_mode=ParseMode.HTML)
+    bot = Bot(token=ConfigBox.config['ya_stt_bot'])#, parse_mode=ParseMode.HTML)
+    #bot = Bot(token=ConfigBox.config['imagination_gpt_bot'])#, parse_mode=ParseMode.HTML)
     # Диспетчер
     dp = Dispatcher()
 
