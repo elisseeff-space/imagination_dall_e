@@ -2,3 +2,4 @@
 
 pip install openai
 pip install aiogram
+pip install pillow
