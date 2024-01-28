@@ -153,6 +153,19 @@ async def message_with_photo(message: Message):
     image.save(byte_stream, format='PNG')
     byte_array = byte_stream.getvalue()
 
+    user_id = message.from_user.id
+    user_first_name = message.from_user.first_name
+    user_last_name = message.from_user.last_name
+    user_name = message.from_user.username
+    if user_id is not None : user_name = str(user_id)
+    else : user_name = ''
+    #user_name = str(user_id)+'.'+user_username+'.'+user_first_name+'.'+user_last_name
+    if user_name is not None : user_name += user_name
+    if user_first_name is not None : user_name += user_first_name
+    if user_last_name is not None : user_name += user_last_name
+    now = datetime.now()
+    formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")
+
     try: 
         response = ConfigBox.client.images.create_variation(
             image=byte_array,
@@ -164,10 +177,9 @@ async def message_with_photo(message: Message):
         image_url = response.data[0].url
         chat_id = str(message.chat.id)
         user_id = message.from_user.id
-        use_date = str(datetime.now())
 
         ConfigBox.update_dialog(chat_id, message.text)
-        params = (chat_id, user_id, use_date, "imagination", "variation", "variation", 0, 0, 0)
+        params = (chat_id, user_name, formatted_date, "imagination", "variation", "variation", 0, 0, 0)
         ConfigBox.dbase.execute('insert into tbl_ya_gpt_log values (?,?,?,?,?,?,?,?,?)', params)
         ConfigBox.dbase.commit()
 
