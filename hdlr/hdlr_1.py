@@ -157,12 +157,12 @@ async def message_with_photo(message: Message):
     user_first_name = message.from_user.first_name
     user_last_name = message.from_user.last_name
     user_name = message.from_user.username
-    if user_id is not None : user_name = str(user_id)
-    else : user_name = ''
+    if user_id is None : user_name_full = ''
+    else : user_name_full = str(user_id)
     #user_name = str(user_id)+'.'+user_username+'.'+user_first_name+'.'+user_last_name
-    if user_name is not None : user_name += user_name
-    if user_first_name is not None : user_name += user_first_name
-    if user_last_name is not None : user_name += user_last_name
+    if user_name is not None : user_name_full += user_name
+    if user_first_name is not None : user_name_full += user_first_name
+    if user_last_name is not None : user_name_full += user_last_name
     now = datetime.now()
     formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")
 
