@@ -159,7 +159,6 @@ async def message_with_photo(message: Message):
     user_name = message.from_user.username
     if user_id is None : user_name_full = ''
     else : user_name_full = str(user_id)
-    #user_name = str(user_id)+'.'+user_username+'.'+user_first_name+'.'+user_last_name
     if user_name is not None : user_name_full += user_name
     if user_first_name is not None : user_name_full += user_first_name
     if user_last_name is not None : user_name_full += user_last_name
@@ -179,7 +178,7 @@ async def message_with_photo(message: Message):
         user_id = message.from_user.id
 
         ConfigBox.update_dialog(chat_id, message.text)
-        params = (chat_id, user_name, formatted_date, "imagination", "variation", "variation", 0, 0, 0)
+        params = (chat_id, user_name_full, formatted_date, "imagination", "variation", "variation", 0, 0, 0)
         ConfigBox.dbase.execute('insert into tbl_ya_gpt_log values (?,?,?,?,?,?,?,?,?)', params)
         ConfigBox.dbase.commit()
 
